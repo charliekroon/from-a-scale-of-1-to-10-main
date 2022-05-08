@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { EntriesService } from './entries.service';
 import { Entry } from './entry.model';
 
@@ -9,5 +9,14 @@ export class EntriesController {
   @Get()
   getAllEntries(): Entry[] {
     return this.entriesService.getAllEntries();
+  }
+
+  @Post()
+  createEntry(
+    @Body('title') title: string,
+    @Body('description') description: string,
+    @Body('date') date: Date,
+  ): Entry {
+    return this.entriesService.createEntry(title, description, date);
   }
 }
