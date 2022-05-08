@@ -6,9 +6,8 @@ export interface Entry {
   status: EntryStatus;
 }
 
-enum EntryStatus {
+export enum EntryStatus {
   OPEN = 'OPEN',
   ARCHIVED = 'ARCHIVED',
   DELETED = 'DELETED',
 }
-
