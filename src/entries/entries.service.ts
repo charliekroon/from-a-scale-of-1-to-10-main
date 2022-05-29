@@ -19,6 +19,12 @@ export class EntriesService {
     this.entries = this.entries.filter((entry) => entry.id !== id);
   }
 
+  updateEntryStatus(id: string, status: EntryStatus) {
+    const entry = this.getEntryById(id);
+    entry.status = status;
+    return entry;
+  }
+
   createEntry(createEntryDto: CreateEntryDto): Entry {
     const { title, description, date } = createEntryDto;
 

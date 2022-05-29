@@ -1,7 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreateEntryDto } from './dto/create-entry.dto';
 import { EntriesService } from './entries.service';
-import { Entry } from './entry.model';
+import { Entry, EntryStatus } from './entry.model';
 
 @Controller('entries')
 export class EntriesController {
@@ -20,6 +28,14 @@ export class EntriesController {
   @Delete('/:id')
   deleteEntryById(@Param('id') id: string): void {
     return this.entriesService.deleteEntry(id);
+  }
+
+  @Patch('/:id/status')
+  updateEntryById(
+    @Param('id') id: string,
+    @Body('status') status: EntryStatus,
+  ): Entry {
+    return this.entriesService.updateEntryStatus(id, status);
   }
 
   @Post()
