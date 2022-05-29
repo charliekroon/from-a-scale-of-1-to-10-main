@@ -6,8 +6,10 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreateEntryDto } from './dto/create-entry.dto';
+import { GetEntriesFilterDto } from './dto/get-entries.filter.dto';
 import { EntriesService } from './entries.service';
 import { Entry, EntryStatus } from './entry.model';
 
@@ -16,8 +18,12 @@ export class EntriesController {
   constructor(private entriesService: EntriesService) {}
 
   @Get()
-  getAllEntries(): Entry[] {
-    return this.entriesService.getAllEntries();
+  getEntries(@Query() filterDto: GetEntriesFilterDto): Entry[] {
+    if (Object.keys(filterDto).length) {
+      // ...
+    } else {
+      return this.entriesService.getAllEntries();
+    }
   }
 
   @Get('/:id')

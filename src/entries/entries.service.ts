@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Entry, EntryStatus } from './entry.model';
 import { v4 as uuid } from 'uuid';
 import { CreateEntryDto } from './dto/create-entry.dto';
+import { GetEntriesFilterDto } from './dto/get-entries.filter.dto';
 
 @Injectable()
 export class EntriesService {
@@ -13,6 +14,18 @@ export class EntriesService {
 
   getEntryById(id: string): Entry {
     return this.entries.find((entry) => entry.id === id);
+  }
+
+  getEntriesWithFilter(filterDto: GetEntriesFilterDto): Entry[] {
+    const { status, search } = filterDto;
+
+    //define temporary [] to hold result
+
+    // do smt with status
+
+    // do smt with search
+
+    // return final result
   }
 
   deleteEntry(id: string): void {
