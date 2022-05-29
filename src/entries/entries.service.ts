@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Entry, EntryStatus } from './entry.model';
 import { v4 as uuid } from 'uuid';
+import { CreateEntryDto } from './dto/create-entry.dto';
 
 @Injectable()
 export class EntriesService {
@@ -10,7 +11,9 @@ export class EntriesService {
     return this.entries;
   }
 
-  createEntry(title: string, description: string, date: Date): Entry {
+  createEntry(createEntryDto: CreateEntryDto): Entry {
+    const { title, description, date } = createEntryDto;
+
     const entry: Entry = {
       id: uuid(),
       title,
