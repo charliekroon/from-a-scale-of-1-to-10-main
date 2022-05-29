@@ -15,6 +15,10 @@ export class EntriesService {
     return this.entries.find((entry) => entry.id === id);
   }
 
+  deleteEntry(id: string): void {
+    this.entries = this.entries.filter((entry) => entry.id !== id);
+  }
+
   createEntry(createEntryDto: CreateEntryDto): Entry {
     const { title, description, date } = createEntryDto;
 

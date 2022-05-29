@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CreateEntryDto } from './dto/create-entry.dto';
 import { EntriesService } from './entries.service';
 import { Entry } from './entry.model';
@@ -15,6 +15,11 @@ export class EntriesController {
   @Get('/:id')
   getEntryById(@Param('id') id: string): Entry {
     return this.entriesService.getEntryById(id);
+  }
+
+  @Delete('/:id')
+  deleteEntryById(@Param('id') id: string): void {
+    return this.entriesService.deleteEntry(id);
   }
 
   @Post()
