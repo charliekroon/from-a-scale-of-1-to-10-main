@@ -11,6 +11,10 @@ export class EntriesService {
     return this.entries;
   }
 
+  getEntryById(id: string): Entry {
+    return this.entries.find((entry) => entry.id === id);
+  }
+
   createEntry(createEntryDto: CreateEntryDto): Entry {
     const { title, description, date } = createEntryDto;
 
