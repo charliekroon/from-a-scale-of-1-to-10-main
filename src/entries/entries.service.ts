@@ -19,13 +19,25 @@ export class EntriesService {
   getEntriesWithFilter(filterDto: GetEntriesFilterDto): Entry[] {
     const { status, search } = filterDto;
 
-    //define temporary [] to hold result
+    let entries = this.getAllEntries();
 
-    // do smt with status
+    if (status) {
+      entries = entries.filter((entry) => entry.status === status);
+    }
 
-    // do smt with search
+    if (search) {
+      entries = entries.filter((entry) => {
+        if (
+          entry.title.includes(search) ||
+          entry.description.includes(search)
+        ) {
+          return true;
+        }
+        return false;
+      });
+    }
 
-    // return final result
+    return entries;
   }
 
   deleteEntry(id: string): void {

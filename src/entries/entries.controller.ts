@@ -20,7 +20,7 @@ export class EntriesController {
   @Get()
   getEntries(@Query() filterDto: GetEntriesFilterDto): Entry[] {
     if (Object.keys(filterDto).length) {
-      // ...
+      return this.entriesService.getEntriesWithFilter(filterDto);
     } else {
       return this.entriesService.getAllEntries();
     }
